@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Standard">
+
+ <!--
+    The name attribute of the ruleset tag is displayed
+    when running PHP_CodeSniffer with the -v command line
+    argument. The description tag below is not displayed anywhere
+    except in this file, so it can contain information for
+    developers who may change this file in the future.
+ -->
+ <description>A custom coding standard</description>
+
+ <!--
+    Here we change two messages from the same sniff. Note how the
+    codes are slightly different because the sniff developer has
+    defined both a MaxExceeded message and a TooLong message. In the
+    case of this sniff, one is used for warnings and one is used
+    for errors.
+ -->
+ <rule ref="Generic.Files.LineLength.MaxExceeded">
+  <message>Line contains %s chars, which is longer than the max limit of %s</message>
+ </rule>
+ <rule ref="Generic.Files.LineLength.TooLong">
+  <message>Line longer than %s characters; contains %s characters</message>
+ </rule>
+
+ <!--
+    Some sniffs have public member vars that allow you to
+    customise specific elements of the sniff. In the case of
+    the Generic LineLength sniff, you can customise the limit
+    at which the sniff will throw warnings and the limit at
+    which it will throw errors.
+
+    The rule below includes the LineLength sniff but changes the
+    settings so the sniff will show warnings for any line longer
+    than 90 chars and errors for any line longer than 100 chars.
+ -->
+ <rule ref="Generic.Files.LineLength">
+  <properties>
+   <property name="lineLimit" value="90"/>
+   <property name="absoluteLineLimit" value="100"/>
+  </properties>
+ </rule>
+</ruleset>
